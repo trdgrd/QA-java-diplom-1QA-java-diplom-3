@@ -19,32 +19,34 @@ public class RegisterTest extends Base {
     @Test
     @DisplayName("Проверка успешной регистрации")
     public void successfulRegistrationTest() {
-        MainPage mainPage = new MainPage(driver);
-        mainPage.waitForLoadMainPage();
-        mainPage.clickLoginButton();
+        try {
+            MainPage mainPage = new MainPage(driver);
+            mainPage.waitForLoadMainPage();
+            mainPage.clickLoginButton();
 
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.waitForLoadLoginPage();
-        loginPage.clickRegisterLink();
+            LoginPage loginPage = new LoginPage(driver);
+            loginPage.waitForLoadLoginPage();
+            loginPage.clickRegisterLink();
 
-        RegisterPage registerPage = new RegisterPage(driver);
-        registerPage.waitForLoadRegisterPage();
+            RegisterPage registerPage = new RegisterPage(driver);
+            registerPage.waitForLoadRegisterPage();
 
-        user = generateRandomUser();
+            user = generateRandomUser();
 
-        registerPage.fillNameField(user.getName());
-        registerPage.fillEmailField(user.getEmail());
-        registerPage.fillPasswordField(user.getPassword());
-        registerPage.clickRegisterButton();
+            registerPage.fillNameField(user.getName());
+            registerPage.fillEmailField(user.getEmail());
+            registerPage.fillPasswordField(user.getPassword());
+            registerPage.clickRegisterButton();
 
-        loginPage.waitForLoadLoginPage();
+            loginPage.waitForLoadLoginPage();
 
-        String expectedUrl = "https://stellarburgers.nomoreparties.site/login";
-        String actualUrl = driver.getCurrentUrl();
+            String expectedUrl = "https://stellarburgers.nomoreparties.site/login";
+            String actualUrl = driver.getCurrentUrl();
 
-        assertEquals(expectedUrl, actualUrl);
-
-        deleteUser(user);
+            assertEquals(expectedUrl, actualUrl);
+        } finally {
+            deleteUser(user);
+        }
     }
 
     @Test

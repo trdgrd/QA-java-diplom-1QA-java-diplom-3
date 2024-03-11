@@ -23,47 +23,11 @@ public abstract class BaseHttpClient {
                 .build();
     }
 
-    protected Response getRequest(String path) {
-        return given()
-                .spec(baseRequestSpec())
-                .get(path);
-    }
-
-    protected Response getRequest(String path, String header) {
-        return given()
-                .spec(baseRequestSpec())
-                .header("Authorization", header)
-                .get(path);
-    }
-
     protected Response postRequest(String path, Object body) {
         return given()
                 .spec(baseRequestSpec())
                 .body(body)
                 .post(path);
-    }
-
-    protected Response postRequest(String path, Object body, String header) {
-        return given()
-                .spec(baseRequestSpec())
-                .body(body)
-                .header("Authorization", header)
-                .post(path);
-    }
-
-    protected Response patchRequest(String path, Object body) {
-        return given()
-                .spec(baseRequestSpec())
-                .body(body)
-                .patch(path);
-    }
-
-    protected Response patchRequest(String path, Object body, String header) {
-        return given()
-                .spec(baseRequestSpec())
-                .body(body)
-                .header("Authorization", header)
-                .patch(path);
     }
 
     protected Response deleteRequest(String path, String header) {

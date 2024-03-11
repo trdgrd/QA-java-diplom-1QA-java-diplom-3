@@ -15,14 +15,6 @@ public class AuthClient extends BaseHttpClient {
         return postRequest(BASE_PATH + "/login", user);
     }
 
-    public Response update(User user) {
-        return patchRequest(BASE_PATH + "/user", user);
-    }
-
-    public Response update(User user, String accessToken) {
-        return patchRequest(BASE_PATH + "/user", user, accessToken);
-    }
-
     public Response delete(User user, String accessToken) {
         return deleteRequest(BASE_PATH + "/user", accessToken);
     }
